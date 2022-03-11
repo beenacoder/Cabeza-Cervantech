@@ -1,4 +1,5 @@
-import brand from '../brand.png';
+import brand from '../../src/assets/brand.png';
+import CartWidget from './CartWidget';
 
 const NavBar = () => {
     return ( 
@@ -12,8 +13,8 @@ const NavBar = () => {
                     <a href="#top">Quienes Somos</a>
                     <a href="#top">Nuestros Productos</a>      
                 </nav>
+                <CartWidget />
             </div>
-            
         </header>
     );
 }
