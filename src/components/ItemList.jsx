@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react"
 import Item from "./Item"
 import {listaProductos} from  '../dataBase/dataProductos'
-
-    
-
-    
-
         
         
 const ItemList = () => {
@@ -26,6 +21,8 @@ const ItemList = () => {
     },[])
 
 
+
+
     return ( 
         <div className="card-contenedor">
             {productos.map((prod) => {
@@ -36,7 +33,7 @@ const ItemList = () => {
                             description={prod.description}
                             price={prod.price}
                             pictureUrl={prod.pictureUrl}
-                        />
+                        />   
                 )
             })}
         </div>

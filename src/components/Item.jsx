@@ -9,10 +9,9 @@ const Item = ({name, description, price, pictureUrl}) => {
                 <h4>{name}</h4>
                 <p>{description}</p>
                 <p>${price}</p>
-                <button>Añadir</button>
+                <button>Detalles</button>
             </div>
-        
-     );
+     )
 }
  
 export default Item;
