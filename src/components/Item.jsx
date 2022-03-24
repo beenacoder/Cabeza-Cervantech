@@ -11,7 +11,7 @@ const Item = ({name, description, price, pictureUrl}) => {
                 <p>${price}</p>
                 <button>Detalles</button>
             </div>
-     )
+    )
 }
  
 export default Item;
