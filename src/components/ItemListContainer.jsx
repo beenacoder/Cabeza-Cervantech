@@ -1,6 +1,7 @@
 import ItemList from  './ItemList'      
 import { useEffect, useState } from "react"
 import {getProducts} from '../dataBase/dataProductos'
+import '../styles/cargando.css';
 
 const ItemListContainer = ({greetings}) => {
     const [productos, setProductos] = useState([])
@@ -20,7 +21,7 @@ const ItemListContainer = ({greetings}) => {
         <div>
             <h2>Bienvenidos a Librería Cervantes</h2>
              {greetings}  
-             {cargando ? <h2>Cargando...</h2> 
+             {cargando ?  <div className="cargando"></div>           
              :
              <ItemList productos={productos}/> 
             }

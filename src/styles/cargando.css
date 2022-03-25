@@ -1,0 +1,22 @@
+
+
+.cargando {
+    width: 70px;
+    height: 70px;
+    border: 10px solid rgba(238, 238, 238, 0.781);
+    border-top: 10px solid rgb(43, 116, 41);
+    border-radius: 50%;
+    animation-name: girar;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    margin: auto;
+  }
+  @keyframes girar {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
