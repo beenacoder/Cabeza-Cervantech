@@ -2,6 +2,7 @@ import ItemList from  './ItemList'
 import { useEffect, useState } from "react"
 import {getProducts} from '../dataBase/dataProductos'
 import '../styles/cargando.css';
+import ItemDetailContainer from './ItemDetailContainer';
 
 const ItemListContainer = ({greetings}) => {
     const [productos, setProductos] = useState([])
@@ -18,14 +19,18 @@ const ItemListContainer = ({greetings}) => {
 
 
     return ( 
-        <div>
+        <div>   
             <h2>Bienvenidos a Librería Cervantes</h2>
-             {greetings}  
-             {cargando ?  <div className="cargando"></div>           
+            {greetings}  
+            
+            {cargando ?  <div className="cargando"></div>           
              :
              <ItemList productos={productos}/> 
             }
+           
+            <ItemDetailContainer/>    
         </div>
+                      
         
      );
 }

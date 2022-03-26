@@ -1,6 +1,10 @@
-const ItemDetail = () => {
+
+
+const ItemDetail = ({product}) => {
     return ( 
-        <div></div>
+        <div>
+            <h2>{product.title}</h2>
+        </div>
      );
 }
  
