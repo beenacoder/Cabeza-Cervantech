@@ -1,8 +1,10 @@
 import ItemList from  './ItemList'      
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import {getProducts} from '../dataBase/dataProductos'
 import '../styles/cargando.css';
-import ItemDetailContainer from './ItemDetailContainer';
+import '../styles/categorias.css';
+import Categorias from './Categorias';
+
 
 const ItemListContainer = ({greetings}) => {
     const [productos, setProductos] = useState([])
@@ -19,17 +21,18 @@ const ItemListContainer = ({greetings}) => {
 
 
     return ( 
-        <div>   
+        <Fragment>
             <h2>Bienvenidos a Librería Cervantes</h2>
             {greetings}  
+            <div className = "cat-items-container">   
+                <Categorias/>
             
-            {cargando ?  <div className="cargando"></div>           
-             :
-             <ItemList productos={productos}/> 
-            }
-           
-            <ItemDetailContainer/>    
-        </div>
+                {cargando ?  <div className="cargando"></div>           
+                :
+                <ItemList productos={productos}/> 
+                }
+            </div>
+        </Fragment>
                       
         
      );

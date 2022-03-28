@@ -1,0 +1,15 @@
+.cat-items-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cat-container  {
+    padding-right: 30px;
+    
+    
+}
+
+.lista-cat {
+    list-style: none;
+    text-align: left;
+}

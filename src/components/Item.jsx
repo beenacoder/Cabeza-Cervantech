@@ -1,5 +1,5 @@
 import '../styles/items.css';
-
+import { Link } from 'react-router-dom';
 
 const Item = ({prod}) => {
     return ( 
@@ -8,19 +8,11 @@ const Item = ({prod}) => {
             <h4>{prod.name}</h4>
             <p>{prod.description}</p>
             <p>${prod.price}</p>
-            <button>Detalles</button>
+            <Link to = {`/details`}>
+                <button className='btn-detalle'>Detalles</button>
+            </Link>   
         </div>
 
-
-
-
-            // <div className = "card">
-            //     <img src = {pictureUrl} alt = ""/>
-            //     <h4>{name}</h4>
-            //     <p>{description}</p>
-            //     <p>${price}</p>
-            //     <button>Detalles</button>
-            // </div>
     )
 }
  

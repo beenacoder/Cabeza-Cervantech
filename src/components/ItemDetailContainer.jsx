@@ -7,7 +7,7 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         getProducts
-        .then(resp => setProduct(resp.find(item => item.id === 1)))
+        .then(resp => setProduct(resp.find(item => item.id === '1')))
         .catch(err => alert("Hubo un error"))
         
     }, [])
