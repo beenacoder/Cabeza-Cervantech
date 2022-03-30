@@ -4,6 +4,7 @@ import ItemListContainer from './components/ItemListContainer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ItemDetailContainer from './components/ItemDetailContainer';
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -14,9 +15,15 @@ function App() {
             path="/" 
             element = {<ItemListContainer greetings="Aca vamos a renderizar nuestros productos"/>}
           />
+        
+        {/* Aqui asociamos la ruta dinamica para las categorias */}
+          <Route
+            path="/category/:categoryId"
+            element = {<ItemListContainer greetings={"Aca vamos a renderizar nuestros productos"}/>}
+          />
           
           <Route
-            path='/details' 
+            path="/detalle/:detalleId"
             element = {<ItemDetailContainer/>}
           />
             

@@ -6,14 +6,17 @@ const Categorias = () => {
         <div className="cat-container">
             <h2>Categorías</h2>
             <ul className="lista-cat">
-                <NavLink to =''> 
+                <NavLink to = "/category/escritura"> 
                     <li>Escritura</li>
                 </NavLink>
-                <NavLink to =''>
+                <NavLink to = "/category/borrar">
                     <li>Borrar</li>
                 </NavLink>
-                <NavLink to =''>
+                <NavLink to = "/category/pegamentos">
                     <li>Pegamentos</li>
+                </NavLink>
+                <NavLink to = "/category/oficina">
+                    <li>Oficina</li>
                 </NavLink>
             </ul>
         </div>
