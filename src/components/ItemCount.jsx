@@ -1,7 +1,7 @@
 
 import {useState} from 'react';
 
-const ItemCount = ({ itemName, initial, stock}) => {
+const ItemCount = ({ initial, stock, itemName}) => {
     
     const [qnty, setQnty] = useState(initial);
         

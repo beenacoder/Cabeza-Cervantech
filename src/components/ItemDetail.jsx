@@ -1,6 +1,7 @@
 import '../styles/itemDetail.css';
+import ItemCount from './ItemCount';
 
-const ItemDetail = ({product}) => {
+const ItemDetail = ({product }) => {
     return ( 
         <div className = "item-detail__container">
             <div className = "item-detail__card">
@@ -14,6 +15,7 @@ const ItemDetail = ({product}) => {
                     <h3>Detalle del Producto</h3>
                     <p className="detail">{product.description}</p>
                 </div>
+                <ItemCount />
             </div>
         </div>
      );
