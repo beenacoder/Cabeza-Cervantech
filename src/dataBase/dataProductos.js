@@ -1,7 +1,7 @@
 
 
 const  listaProductos = [
-    {id: '1', title: 'Boligrafo', category: 'escritura', description: 'Boligrafo Bic trazo grueso azul', price: 80, pictureUrl:'https://i.ibb.co/KWyLvSv/bic-Grueso.jpg', stock: 20},
+    {id: '1', title: 'Boligrafo', category: 'escritura', description: 'Boligrafo Bic trazo grueso azul', price: 80, pictureUrl:'https://i.ibb.co/KWyLvSv/bic-Grueso.jpg', stock: 15},
     {id: '2', title: 'Carpeta 3 Solapas', category: 'oficina', description: 'Carpeta 3 solapas', price: 150, pictureUrl:'https://i.ibb.co/ZMvzMMQ/carpeta3-Solapas.jpg', stock: 20},
     {id: '3', title: 'Adhesivo Sintético', category: 'pegamentos', description: 'Adhesivo Sintetico', price: 70, pictureUrl:'https://i.ibb.co/1JWzSsR/adhesivo-Pelikan.jpg', stock: 20},
     {id: '4', title: 'Boligrafo Bic', category: 'escritura', description: 'Boligrafo Bic Extra Bold', price: 90, pictureUrl:'https://i.ibb.co/s2mDRtX/bicBold.jpg', stock: 20},

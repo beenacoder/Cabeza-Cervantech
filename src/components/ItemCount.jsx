@@ -1,20 +1,57 @@
 
 import {useState} from 'react';
+import { Link } from 'react-router-dom';
 
-const ItemCount = ({ initial, stock, itemName}) => {
-    
+const AgregarButton = ({handleButton}) => {
+    return (
+        <button onClick={handleButton}> 
+            Comprar
+        </button>
+    )
+}
+
+const SeguirCarritoButton = () => {
+    return (
+       <>
+    <Link to = '/'>
+        <button>
+            Seguir Comprando
+        </button>
+    </Link>    
+
+    <Link to= '/cart'>
+        <button>
+            Ir al carrito
+        </button>
+    </Link>    
+       </>
+    )
+}
+
+
+const ItemCount = ({product, initial}) => {
+    const [button, setButton] = useState(false)
     const [qnty, setQnty] = useState(initial);
-        
+    
+    
 
-    const addItem = (qty) => {
-        if (qnty < stock) {
-            setQnty(qty)
+    
+    const handleButton = () => {
+        setButton(true)
+        
+    }
+
+
+
+    const addItem = () => {
+        if (qnty < product.stock) {
+            setQnty(qnty +1)
         } 
     }
 
-    const removeItem = (qty) => {
+    const removeItem = () => {
         if (qnty > 0) {
-            setQnty(qty)
+            setQnty(qnty-1)
         }
     }
 
@@ -22,13 +59,16 @@ const ItemCount = ({ initial, stock, itemName}) => {
 
     return(
         <div >
-            <h2>Producto: {itemName}</h2>
-            <h3>Stock: {stock - qnty}</h3>
-            <button  onClick={() =>removeItem(qnty - 1)}>Quitar</button>
+            <p>Disponible: {product.stock - qnty}</p>
+            <button  onClick={removeItem}>-</button>
             <span> {qnty} </span>
-            <button  onClick={() =>addItem(qnty + 1)}>Agregar</button>
+            <button  onClick={addItem}>+</button>
             <br />
-            <button>Agregar al carrito</button>
+            { button === false ?
+                <AgregarButton handleButton={handleButton}/>
+            :
+                <SeguirCarritoButton/>
+            }
         </div>
 
     )

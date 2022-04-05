@@ -1,7 +1,10 @@
+
 import '../styles/itemDetail.css';
 import ItemCount from './ItemCount';
 
-const ItemDetail = ({product }) => {
+const ItemDetail = ({product}) => {
+
+
     return ( 
         <div className = "item-detail__container">
             <div className = "item-detail__card">
@@ -11,11 +14,11 @@ const ItemDetail = ({product }) => {
                 <div className="columna">
                     <h1>{product.title}</h1>
                     <h4>${product.price}</h4>
-                    <a href="#top" className="btn">Lo Quiero</a>
+                    
                     <h3>Detalle del Producto</h3>
                     <p className="detail">{product.description}</p>
+                    <ItemCount product={product} initial={1} stock = {product.stock} />
                 </div>
-                <ItemCount />
             </div>
         </div>
      );
