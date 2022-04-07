@@ -29,7 +29,7 @@ const SeguirCarritoButton = () => {
 }
 
 
-const ItemCount = ({product, initial}) => {
+const ItemCount = ({product, initial, onAdd}) => {
     const [button, setButton] = useState(false)
     const [qnty, setQnty] = useState(initial);
     
@@ -38,7 +38,7 @@ const ItemCount = ({product, initial}) => {
     
     const handleButton = () => {
         setButton(true)
-        
+        onAdd(qnty)
     }
 
 

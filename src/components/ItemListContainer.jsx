@@ -31,7 +31,7 @@ const ItemListContainer = ({greetings}) => {
         .finally(() => setCargando(false))
     }, [categoryId])
 
-    console.log(categoryId)
+    // console.log(categoryId)
     return ( 
         <Fragment>
             <h2>Bienvenidos a Librería Cervantes</h2>
