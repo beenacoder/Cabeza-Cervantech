@@ -12,10 +12,44 @@ function CartContextProvider({children}) { //Componente
     const [cartList, SetCartList] = useState([])
 
 
-    const addToCart = (item) => {
-        SetCartList([...cartList, item])
+   //Funcion para agregar productos al carrito y para modificar unicamente la cantidad
+    const addToCart = (item, cant) => {
+        const isInCart = cartList.find(itm => itm.id === item.id)
+        if(isInCart === undefined) {
+            SetCartList([...cartList, item])
+        } else {
+            const newCart = [...cartList]
+            const findInCart = newCart.filter(prod => {
+                return prod.id === item.id
+            }).length > 0
+            if(findInCart){
+                newCart.forEach((produ, index)=>{
+                    if (produ.id === item.id) {
+                        const quantity = newCart[index].cantidad
+                        newCart[index] = {
+                            id: item.id,
+                            title: item.title,
+                            category: item.category,
+                            description: item.description,
+                            price: item.price,
+                            pictureUrl: item.pictureUrl,
+                            cantidad: item.cantidad + quantity
+
+                        }
+                    } 
+                })
+            }
+            SetCartList(newCart)
+        }
     }
 
+
+
+
+//Funcion para vaciar el carrito
+    const emptyCart = () => {
+        SetCartList([])
+    }
    
 
     //Inyectamos en value los estados y funciones que van a ser globales.
@@ -23,7 +57,8 @@ function CartContextProvider({children}) { //Componente
     return (
         <CartContext.Provider value = {{
             cartList,
-            addToCart
+            addToCart,
+            emptyCart
         }}>
             {children}
         </CartContext.Provider>

@@ -9,9 +9,11 @@ const ItemDetail = ({product}) => {
 
     function onAdd(cant) {
         addToCart({...product, cantidad: cant})
+        
     }
-
     console.log(cartList)
+    
+   
     return ( 
         <div className = "item-detail__container">
             <div className = "item-detail__card">
