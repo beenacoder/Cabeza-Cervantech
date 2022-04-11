@@ -8,8 +8,11 @@ const Cart = () => {
         <div>
             <h1>Cart</h1>
             {cartList.map(item => <li key={item.id}>
-                                        Articulo: {item.title} -  Cantidad: {item.cantidad}
+                                        Articulo: {item.title} - precio: ${item.price} -  Cantidad: {item.cantidad}
                                     </li>)}
+                                    <div>
+                                        Total: 
+                                    </div>
             <button onClick={emptyCart}>Vaciar Carrito</button>
             <span>-</span>
             <Link to = '/'>

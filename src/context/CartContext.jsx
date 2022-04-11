@@ -55,11 +55,7 @@ function CartContextProvider({children}) { //Componente
     //Inyectamos en value los estados y funciones que van a ser globales.
     //Los estados arriba, las funciones debajo.
     return (
-        <CartContext.Provider value = {{
-            cartList,
-            addToCart,
-            emptyCart
-        }}>
+        <CartContext.Provider value = {{cartList, addToCart, emptyCart}}>
             {children}
         </CartContext.Provider>
     )
