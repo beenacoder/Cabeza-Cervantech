@@ -3,12 +3,23 @@ import { useParams } from 'react-router-dom'
 import { getProducts } from '../dataBase/dataProductos'
 import ItemDetail from './ItemDetail'
 import '../styles/cargando.css';
+import {getFirestore, doc, getDoc} from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState({})
     const [cargando, setCargando] = useState(true)
 
     const {detalleId} = useParams()
+
+
+     // Creamos una conexion con firestore
+    //  useEffect(() => {
+    //     const querydb = getFirestore()
+    //     const queryProd = doc(querydb, 'productos', '2h7PghdWV4vAP5sLHwBI')
+
+    //     getDoc(queryProd)
+    //     .then(resp => setProduct({id: resp.id, ...resp.data()}))
+    // },[])
 
     useEffect(() => {
         getProducts
@@ -18,7 +29,7 @@ const ItemDetailContainer = () => {
     }, [detalleId])
 
     
-    // console.log(detalleId)
+    console.log(product)
     return ( 
         <>
             {cargando ?  <div className="cargando"></div>
