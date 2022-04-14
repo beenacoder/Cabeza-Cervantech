@@ -1,11 +1,10 @@
 import ItemList from  './ItemList'      
 import { Fragment, useEffect, useState } from "react"
-import {getProducts} from '../dataBase/dataProductos'
-import '../styles/cargando.css';
-import '../styles/categorias.css';
 import Categorias from './Categorias';
 import { useParams } from 'react-router-dom';
-import {getFirestore, doc, getDoc, collection, getDocs} from 'firebase/firestore'
+import {getFirestore,  collection, getDocs, query, where} from 'firebase/firestore'
+import '../styles/cargando.css';
+import '../styles/categorias.css';
 
 const ItemListContainer = ({greetings}) => {
     const [productos, setProductos] = useState([])
@@ -16,35 +15,24 @@ const ItemListContainer = ({greetings}) => {
     
      //Creamos una conexion con firestore
      useEffect(() => {
-        const querydb = getFirestore()
-        const queryCollection = collection(querydb, 'productos')
+        if (categoryId) {
+            const querydb = getFirestore()
+            const queryCollection = collection(querydb, 'productos')
+            const queryFilter = query(queryCollection, where('categoryId', '==', categoryId))
+            getDocs(queryFilter)
+            .then(resp => setProductos(resp.docs.map(item => ({id: item.id, ...item.data()}))))
+            .catch(err => alert("Hubo un error"))
+            .finally(() => setCargando(false))
+        } else {
+            const querydb = getFirestore()
+            const queryCollection = collection(querydb, 'productos')
+            getDocs(queryCollection)
+            .then(resp => setProductos(resp.docs.map(item => ({id: item.id, ...item.data()}))))
+            .catch(err => alert("Hubo un error"))
+            .finally(() => setCargando(false))
+        }
+    },[categoryId])
 
-        getDocs(queryCollection)
-        .then(resp => setProductos(resp.docs.map(item => ({id: item.id, ...item.data()}))))
-        .catch(err => alert("Hubo un error"))
-        .finally(() => setCargando(false))
-    },[])
-
-
-
-
-    //Si no usamos useEffect va a llamarse primero (antes que el render) y va a bloquear el rendering en caso de tardios
-    //Con el array vacio llamamos una sola vez a la API despues del renderizado o montado del componente
-    // useEffect(() => {
-    //     categoryId 
-    //     ? 
-    //     getProducts
-    //     .then(resp => setProductos(resp.filter(produ => produ.category === categoryId)))
-    //     .catch(err => alert("Hubo un error"))
-    //     .finally(() => setCargando(false))
-    //     : 
-    //     getProducts
-    //     .then(resp => setProductos(resp))
-    //     .catch(err => alert("Hubo un error"))
-    //     .finally(() => setCargando(false))
-    // }, [categoryId])
-
-    // console.log(categoryId)
     return ( 
         <Fragment>
             <h2>Bienvenidos a Librería Cervantes</h2>

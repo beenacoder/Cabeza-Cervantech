@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getProducts } from '../dataBase/dataProductos'
 import ItemDetail from './ItemDetail'
 import '../styles/cargando.css';
 import {getFirestore, doc, getDoc} from 'firebase/firestore'
@@ -12,21 +11,23 @@ const ItemDetailContainer = () => {
     const {detalleId} = useParams()
 
 
-     // Creamos una conexion con firestore
-    //  useEffect(() => {
-    //     const querydb = getFirestore()
-    //     const queryProd = doc(querydb, 'productos', '2h7PghdWV4vAP5sLHwBI')
+    // Creamos una conexion con firestore
+     useEffect(() => {
+        const querydb = getFirestore()
+        const queryProd = doc(querydb, 'productos', detalleId)
 
-    //     getDoc(queryProd)
-    //     .then(resp => setProduct({id: resp.id, ...resp.data()}))
-    // },[])
-
-    useEffect(() => {
-        getProducts
-        .then(resp => setProduct(resp.find(item => item.id === detalleId)))
+        getDoc(queryProd)
+        .then(resp => setProduct({id: resp.id, ...resp.data()}))
         .catch(err => alert("Hubo un error"))
         .finally(() => setCargando(false))
-    }, [detalleId])
+    },[detalleId])
+
+    // useEffect(() => {
+    //     getProducts
+    //     .then(resp => setProduct(resp.find(item => item.id === detalleId)))
+    //     .catch(err => alert("Hubo un error"))
+    //     .finally(() => setCargando(false))
+    // }, [detalleId])
 
     
     console.log(product)
