@@ -43,7 +43,12 @@ function CartContextProvider({children}) { //Componente
         }
     }
 
-
+//Funcion de elimitar Item del carrito
+    const deleteItem = (id) => {
+        const deletedItem = cartList.filter(item => item.id !== id)
+        SetCartList(deletedItem)
+        console.log(deletedItem)
+    }
 
 
 //Funcion para vaciar el carrito
@@ -55,7 +60,7 @@ function CartContextProvider({children}) { //Componente
     //Inyectamos en value los estados y funciones que van a ser globales.
     //Los estados arriba, las funciones debajo.
     return (
-        <CartContext.Provider value = {{cartList, addToCart, emptyCart}}>
+        <CartContext.Provider value = {{cartList, addToCart, deleteItem, emptyCart}}>
             {children}
         </CartContext.Provider>
     )

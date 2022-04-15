@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { useCartContext } from "../context/CartContext"
+import CartItem from "./CartItem"
 
 const Cart = () => {
     const {cartList, emptyCart} = useCartContext()
@@ -7,12 +8,9 @@ const Cart = () => {
     return (
         <div>
             <h1>Cart</h1>
-            {cartList.map(item => <li key={item.id}>
-                                        Articulo: {item.title} - precio: ${item.price} -  Cantidad: {item.cantidad}
-                                    </li>)}
-                                    <div>
-                                        Total: 
-                                    </div>
+            {cartList.map(item => <CartItem  key={item.id} title={item.title} price={item.price} cantidad={item.cantidad} />
+                                    )}
+                                    
             <button onClick={emptyCart}>Vaciar Carrito</button>
             <span>-</span>
             <Link to = '/'>
