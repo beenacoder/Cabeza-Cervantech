@@ -13,7 +13,7 @@ function CartContextProvider({children}) { //Componente
 
 
    //Funcion para agregar productos al carrito y para modificar unicamente la cantidad
-    const addToCart = (item, cant) => {
+    const addToCart = (item) => {
         const isInCart = cartList.find(itm => itm.id === item.id)
         if(isInCart === undefined) {
             SetCartList([...cartList, item])
@@ -45,9 +45,8 @@ function CartContextProvider({children}) { //Componente
 
 //Funcion de elimitar Item del carrito
     const deleteItem = (id) => {
-        const deletedItem = cartList.filter(item => item.id !== id)
+        const deletedItem = cartList.filter(itm => itm.id !== id)
         SetCartList(deletedItem)
-        console.log(deletedItem)
     }
 
 
