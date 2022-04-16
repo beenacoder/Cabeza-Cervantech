@@ -42,6 +42,19 @@ function CartContextProvider({children}) { //Componente
             SetCartList(newCart)
         }
     }
+//Funcion para la cantidad ded items en el carrito
+    const itemQnty = () => {
+        return cartList.reduce((acum, itm) => acum += itm.cantidad, 0)
+    }
+
+
+
+//Funcion para el precio total
+    const totalPrice = () => {
+        return cartList.reduce((acum, itm) => acum + (itm.cantidad * itm.price), 0)
+    }
+
+
 
 //Funcion de elimitar Item del carrito
     const deleteItem = (id) => {
@@ -59,7 +72,7 @@ function CartContextProvider({children}) { //Componente
     //Inyectamos en value los estados y funciones que van a ser globales.
     //Los estados arriba, las funciones debajo.
     return (
-        <CartContext.Provider value = {{cartList, addToCart, deleteItem, emptyCart}}>
+        <CartContext.Provider value = {{cartList, addToCart, deleteItem, emptyCart, totalPrice, itemQnty}}>
             {children}
         </CartContext.Provider>
     )

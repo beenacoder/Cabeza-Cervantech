@@ -4,27 +4,21 @@ import { Link } from 'react-router-dom';
 
 const AgregarButton = ({handleButton}) => {
     return (
-        <button onClick={handleButton}> 
-            Comprar
-        </button>
+        <button onClick={handleButton}>Comprar</button>
     )
 }
 
 const SeguirCarritoButton = () => {
     return (
-       <>
-    <Link to = '/'>
-        <button>
-            Seguir Comprando
-        </button>
-    </Link>    
-
-    <Link to= '/cart'>
-        <button>
-            Ir al carrito
-        </button>
-    </Link>    
-       </>
+    <>
+        <Link to = '/'>
+            <button>Seguir Comprando</button>
+        </Link>    
+        
+        <Link to= '/cart'>
+            <button> Ir al carrito</button>
+        </Link>    
+    </>
     )
 }
 
