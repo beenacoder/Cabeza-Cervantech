@@ -10,6 +10,7 @@ export const useCartContext = () => useContext(CartContext)
 //En este componente vamos a crear todos los estados y funciones globales, de esta forma enmascaramos y abstraemos context
 function CartContextProvider({children}) { //Componente
     const [cartList, SetCartList] = useState([])
+    const [qntyItem, setQntyItem] = useState(0)
 
 
    //Funcion para agregar productos al carrito y para modificar unicamente la cantidad
@@ -42,9 +43,10 @@ function CartContextProvider({children}) { //Componente
             SetCartList(newCart)
         }
     }
-//Funcion para la cantidad ded items en el carrito
+//Funcion para la cantidad de items en el carrito
     const itemQnty = () => {
-        return cartList.reduce((acum, itm) => acum += itm.cantidad, 0)
+        setQntyItem(cartList.reduce((acum, itm) => acum += itm.cantidad, 0))
+        return qntyItem
     }
 
 

@@ -17,7 +17,10 @@ const NavBar = () => {
                     <a href="#top">Nuestros Productos</a>      
                 </nav>
                 
-                <CartWidget />   
+                <NavLink to = '/cart'>
+                    <CartWidget />
+                </NavLink>
+                 
             </div>
         </header>
     );

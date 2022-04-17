@@ -11,13 +11,15 @@
 
 .item-detail__card {
     display: flex;
-    align-items: center;
+    align-items: left;
     flex-wrap: wrap;
     justify-content: space-around;
+
     
 }
 
 .columna img {
+    width: 350px;
     max-width: 100%;
     padding: 50px 0;
     
