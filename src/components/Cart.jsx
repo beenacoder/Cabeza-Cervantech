@@ -2,20 +2,26 @@ import { Link } from "react-router-dom"
 import { useCartContext } from "../context/CartContext"
 import CartItem from "./CartItem"
 import { getFirestore, collection, addDoc  } from 'firebase/firestore'
+import { useState } from "react"
+import CartForm from "./CartForm"
 
 
 const Cart = () => {
-    const {cartList, emptyCart, totalPrice, itemQnty} = useCartContext()
+    const [dataForm, setDataForm] = useState({name: '', email: '', phone: ''})
+    const [fillForm, setFillForm] = useState(false)
 
+
+    const {cartList, emptyCart, totalPrice, itemQnty} = useCartContext()
 
     const generateOrder = (e) => {
         e.preventDefault();
+        const dataBase =  getFirestore()
+        const queryCollection = collection(dataBase, 'orders')
+        //Aca vamos a crear las validaciones para el formulario
 
         let order = {}
 
-        order.buyer = {name: 'Ariel', email: 'ariel@gmail.com', phone: '0303456'}
-        order.total = totalPrice()
-
+        order.buyer = dataForm
         order.items = cartList.map(cartItem => {
             const id = cartItem.id
             const nombre = cartItem.title
@@ -23,29 +29,34 @@ const Cart = () => {
 
             return {id, nombre, precio}
         })
-        // console.log(order)
+        order.total = totalPrice()
+        console.log(order)
 
         //Creacion de un documento
-        const dataBase = getFirestore()
-        const queryCollection = collection(dataBase, 'orders')
+        
         addDoc(queryCollection, order)
-        .then(resp => console.log(resp))
-        .catch(err => "Hubo un error en la pagina")
-        .finally(emptyCart)
+        .then(({ id }) => alert(`Muchas gracias por su compra, su id de compra es:  ${id}`))
+        .catch((err) => console.log(err))
+        .finally(emptyCart) 
 
         //Update, Modificar un archivo
         // const queryUpdate = doc(dataBase, 'productos', '0R4DRUodJsIDYdYdTNIe')
         // updateDoc(queryUpdate, {
         //     stock: 2
-        // })
-
-        
-
-
+        // })  
     }
 
+    const handleFill = () => {
+        setFillForm(true)
+    }
 
-
+    const handleForm  = (event) => {
+        setDataForm({
+            ...dataForm,
+            [event.target.name]: event.target.value 
+        })
+    }
+    console.log(dataForm)
     return (
         <div className="cart-container">
             <h1>Cart</h1>
@@ -68,9 +79,15 @@ const Cart = () => {
                     <button>Seguir Comprando</button>
                     </Link>
                     <span>-</span>
-                    <button onClick={generateOrder}>Finalizar Compra</button>
+                    <button onClick={handleFill}>Proceder con la compra</button>
+                    
                 </>
-}
+            }
+
+               {cartList.length !== 0 && fillForm === true &&
+                <>
+                    <CartForm handleForm={handleForm} dataForm={dataForm} generateOrder={generateOrder}/>
+                </>}
         </div>
     )
 }

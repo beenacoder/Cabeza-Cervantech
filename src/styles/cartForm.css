@@ -1,0 +1,16 @@
+.cart-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 25%;
+    margin: auto;
+}
+
+.cart-form__input {
+    margin: 5px 5px;
+}
+
+.cart-form__btn {
+    margin-top: 20px;
+    width: 40%;
+    
+}

@@ -2,13 +2,13 @@
 import {useState} from 'react';
 import { Link } from 'react-router-dom';
 
-const AgregarButton = ({handleButton}) => {
+const AddButton = ({handleButton}) => {
     return (
         <button onClick={handleButton}>Comprar</button>
     )
 }
 
-const SeguirCarritoButton = () => {
+const KeepBuyingButton = () => {
     return (
     <>
         <Link to = '/'>
@@ -59,9 +59,10 @@ const ItemCount = ({product, initial, onAdd}) => {
             <button  onClick={addItem}>+</button>
             <br />
             { button === false ?
-                <AgregarButton handleButton={handleButton}/>
+                <AddButton
+             handleButton={handleButton}/>
             :
-                <SeguirCarritoButton/>
+                <KeepBuyingButton/>
             }
         </div>
 
