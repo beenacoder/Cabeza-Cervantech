@@ -12,5 +12,8 @@
 .cart-form__btn {
     margin-top: 20px;
     width: 40%;
-    
+}
+
+.error {
+    color:rgb(206, 15, 15)
 }
