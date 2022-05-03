@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext([])
 
@@ -8,9 +8,22 @@ export const useCartContext = () => useContext(CartContext)
 
 
 //En este componente vamos a crear todos los estados y funciones globales, de esta forma enmascaramos y abstraemos context
-function CartContextProvider({children}) { //Componente
-    const [cartList, SetCartList] = useState([])
+function CartContextProvider({children}) { 
+
+    //Creamos una variable para obtener los datos de localStorage y poder pasarle al useState como valor inicial
+    const savedCart = localStorage.getItem('listItems') ? JSON.parse(localStorage.getItem('listItems')) : []
+    
+    //Pasamos como valor inicial los datos de localstorage
+    const [cartList, SetCartList] = useState(savedCart)
+
     const [qntyItem, setQntyItem] = useState(0)
+
+    
+    //Guardamos en localstorage los productos del carrito
+    useEffect(()=>{
+        localStorage.setItem('listItems', JSON.stringify(cartList))
+    },[cartList])
+
 
 
    //Funcion para agregar productos al carrito y para modificar unicamente la cantidad

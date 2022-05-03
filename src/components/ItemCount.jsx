@@ -58,8 +58,7 @@ const ItemCount = ({product, initial, onAdd}) => {
             <button  onClick={addItem}>+</button>
             <br />
             { button === false ?
-                <AddButton
-             handleButton={handleButton}/>
+                <AddButton handleButton={handleButton}/>
             :
                 <KeepBuyingButton/>
             }

@@ -8,19 +8,19 @@ const ItemDetailContainer = () => {
     const [product, setProduct] = useState({})
     const [loading, setloading] = useState(true)
 
-    const {detalleId} = useParams()
+    const {detailId} = useParams()
 
 
     // Creamos una conexion con firestore
      useEffect(() => {
         const querydb = getFirestore()
-        const queryProd = doc(querydb, 'productos', detalleId)
+        const queryProd = doc(querydb, 'productos', detailId)
 
         getDoc(queryProd)
         .then(resp => setProduct({id: resp.id, ...resp.data()}))
         .catch(err => alert("Hubo un error"))
         .finally(() => setloading(false))
-    },[detalleId])
+    },[detailId])
 
     return ( 
         <>

@@ -26,7 +26,7 @@ function App() {
             />
 
             <Route
-              path="/detalle/:detalleId"
+              path="/detail/:detailId"
               element = {<ItemDetailContainer/>}
             />
 

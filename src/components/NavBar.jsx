@@ -13,15 +13,17 @@ const NavBar = () => {
             
                 <nav className = "menu">
                     <Link to ="/">
-                        <a href="#top">Inicio</a>
+                        Inicio
                     </Link>
                     <a href="#top">Quienes Somos</a>
                     <a href="#top">Nuestros Productos</a>      
                 </nav>
                 
-                <NavLink to = '/cart'>
-                    <CartWidget />
-                </NavLink>
+                <div>
+                    <NavLink to = '/cart'>
+                        <CartWidget />
+                    </NavLink>
+                </div>
                  
             </div>
         </header>
