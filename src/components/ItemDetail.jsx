@@ -1,19 +1,17 @@
 import { useCartContext } from '../context/CartContext';
-import '../styles/itemDetail.css';
 import ItemCount from './ItemCount';
+import '../styles/itemDetail.css';
 
 const ItemDetail = ({product}) => {
 
     //Esta es la funcion global que tenemos en CartContext
-    const {addToCart, cartList} = useCartContext()
+    const {addToCart} = useCartContext()
 
     function onAdd(cant) {
-        addToCart({...product, cantidad: cant})
+        addToCart({...product, quantity: cant})
         
     }
-    console.log(cartList)
-    
-   
+
     return ( 
         <div className = "item-detail__container">
             <div className = "item-detail__card">

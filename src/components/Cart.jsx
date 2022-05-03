@@ -1,11 +1,11 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useCartContext } from "../context/CartContext"
 import CartItem from "./CartItem"
-import { useState } from "react"
 import CartForm from "./CartForm"
 
 
-const Cart = ({handleForm, dataForm, generateOrder}) => {
+const Cart = () => {
     const [fillForm, setFillForm] = useState(false)
     const {cartList, emptyCart, totalPrice, itemQnty} = useCartContext()
 
@@ -25,7 +25,7 @@ const Cart = ({handleForm, dataForm, generateOrder}) => {
                 </>
              : 
                 <>
-                {cartList.map(item => <CartItem  key={item.id} id= {item.id} title={item.title} price={item.price} cantidad={item.cantidad} />
+                {cartList.map(item => <CartItem  key={item.id} id= {item.id} title={item.title} price={item.price} quantity={item.quantity} />
                                     )}
                     <div>Cantidad total de productos: {itemQnty()}</div>
                     <div>Total a pagar: $ {totalPrice()}</div>                        
@@ -42,7 +42,7 @@ const Cart = ({handleForm, dataForm, generateOrder}) => {
 
                {cartList.length !== 0 && fillForm === true &&
                 <>
-                    <CartForm handleForm={handleForm} dataForm={dataForm} generateOrder={generateOrder}/>
+                    <CartForm />
                 </>}
         </div>
     )

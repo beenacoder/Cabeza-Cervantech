@@ -1,36 +1,33 @@
-import ItemList from  './ItemList'      
 import { Fragment, useEffect, useState } from "react"
-import Categorias from './Categorias';
 import { useParams } from 'react-router-dom';
 import {getFirestore,  collection, getDocs, query, where} from 'firebase/firestore'
+import ItemList from  './ItemList'      
+import Categorias from './Categorias';
 import '../styles/cargando.css';
 import '../styles/categorias.css';
 
 const ItemListContainer = ({greetings}) => {
-    const [productos, setProductos] = useState([])
-    const [cargando, setCargando] = useState(true)
+    const [products, setproducts] = useState([])
+    const [loading, setloading] = useState(true)
 
     //Hook de React router dom para obtener el parametro de la ruta
     const {categoryId} = useParams()
     
      //Creamos una conexion con firestore
      useEffect(() => {
-        if (categoryId) {
+        
             const querydb = getFirestore()
             const queryCollection = collection(querydb, 'productos')
-            const queryFilter = query(queryCollection, where('categoryId', '==', categoryId))
+            const queryFilter = categoryId ? 
+                                    query(queryCollection, 
+                                        where('categoryId', '==', categoryId))
+                                    :
+                                    queryCollection
+
             getDocs(queryFilter)
-            .then(resp => setProductos(resp.docs.map(item => ({id: item.id, ...item.data()}))))
+            .then(resp => setproducts(resp.docs.map(item => ({id: item.id, ...item.data()}))))
             .catch(err => alert("Hubo un error"))
-            .finally(() => setCargando(false))
-        } else {
-            const querydb = getFirestore()
-            const queryCollection = collection(querydb, 'productos')
-            getDocs(queryCollection)
-            .then(resp => setProductos(resp.docs.map(item => ({id: item.id, ...item.data()}))))
-            .catch(err => alert("Hubo un error"))
-            .finally(() => setCargando(false))
-        }
+            .finally(() => setloading(false))
     },[categoryId])
 
     return ( 
@@ -40,9 +37,9 @@ const ItemListContainer = ({greetings}) => {
             <div className = "cat-items-container">   
                 <Categorias/>
             
-                {cargando ?  <div className="cargando"></div>           
+                {loading ?  <div className="cargando"></div>           
                 :
-                <ItemList productos={productos}/> 
+                <ItemList products={products}/> 
                 }
             </div>
         </Fragment>

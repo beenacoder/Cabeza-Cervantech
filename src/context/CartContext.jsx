@@ -26,7 +26,7 @@ function CartContextProvider({children}) { //Componente
             if(findInCart){
                 newCart.forEach((produ, index)=>{
                     if (produ.id === item.id) {
-                        const quantity = newCart[index].cantidad
+                        const quant = newCart[index].quantity
                         newCart[index] = {
                             id: item.id,
                             title: item.title,
@@ -34,7 +34,7 @@ function CartContextProvider({children}) { //Componente
                             description: item.description,
                             price: item.price,
                             pictureUrl: item.pictureUrl,
-                            cantidad: item.cantidad + quantity
+                            quantity: item.quantity + quant
 
                         }
                     } 
@@ -45,25 +45,20 @@ function CartContextProvider({children}) { //Componente
     }
 //Funcion para la cantidad de items en el carrito
     const itemQnty = () => {
-        setQntyItem(cartList.reduce((acum, itm) => acum += itm.cantidad, 0))
+        setQntyItem(cartList.reduce((acum, itm) => acum += itm.quantity, 0))
         return qntyItem
     }
 
-
-
 //Funcion para el precio total
     const totalPrice = () => {
-        return cartList.reduce((acum, itm) => acum + (itm.cantidad * itm.price), 0)
+        return cartList.reduce((acum, itm) => acum + (itm.quantity * itm.price), 0)
     }
-
-
 
 //Funcion de elimitar Item del carrito
     const deleteItem = (id) => {
         const deletedItem = cartList.filter(itm => itm.id !== id)
         SetCartList(deletedItem)
     }
-
 
 //Funcion para vaciar el carrito
     const emptyCart = () => {

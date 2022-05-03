@@ -6,7 +6,7 @@ import {getFirestore, doc, getDoc} from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState({})
-    const [cargando, setCargando] = useState(true)
+    const [loading, setloading] = useState(true)
 
     const {detalleId} = useParams()
 
@@ -19,21 +19,12 @@ const ItemDetailContainer = () => {
         getDoc(queryProd)
         .then(resp => setProduct({id: resp.id, ...resp.data()}))
         .catch(err => alert("Hubo un error"))
-        .finally(() => setCargando(false))
+        .finally(() => setloading(false))
     },[detalleId])
 
-    // useEffect(() => {
-    //     getProducts
-    //     .then(resp => setProduct(resp.find(item => item.id === detalleId)))
-    //     .catch(err => alert("Hubo un error"))
-    //     .finally(() => setCargando(false))
-    // }, [detalleId])
-
-    
-    console.log(product)
     return ( 
         <>
-            {cargando ?  <div className="cargando"></div>
+            {loading ?  <div className="cargando"></div>
             :
             <ItemDetail product = {product}/>
             }

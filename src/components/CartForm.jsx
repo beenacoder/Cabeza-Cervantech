@@ -1,7 +1,7 @@
-import '../styles/cartForm.css';
 import { getFirestore, collection, addDoc  } from 'firebase/firestore'
 import { useCartContext } from "../context/CartContext"
 import { Formik } from 'formik';
+import '../styles/cartForm.css';
 
 const CartForm = () => {
 
@@ -17,6 +17,7 @@ const CartForm = () => {
                 email2:'',
                 phone: ''
             }}
+            
             validate = {(formData)=>{
                 let err = {} 
 
@@ -54,12 +55,11 @@ const CartForm = () => {
                     order.items = cartList.map(cartItem => {
                         const id = cartItem.id
                         const nombre = cartItem.title
-                        const precio = cartItem.price * cartItem.cantidad
+                        const precio = cartItem.price * cartItem.quantity
 
                         return {id, nombre, precio}
                     })
                     order.total = totalPrice()
-                    console.log(order)
 
                     //Creacion de un documento en Firebase
                     
@@ -74,9 +74,6 @@ const CartForm = () => {
                     //     stock: 2
                     // }) 
                 
-
-                console.log(formData)
-                console.log("Formulario enviado")
             }}
        >
             {({handleSubmit, values, touched, errors, handleChange, handleBlur,}) => (

@@ -1,6 +1,6 @@
-import brand from '../../src/assets/brand.png';
+import { NavLink, Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
-import { NavLink } from 'react-router-dom';
+import brand from '../../src/assets/brand.png';
 
 const NavBar = () => {
     return ( 
@@ -12,7 +12,9 @@ const NavBar = () => {
                 </NavLink>
             
                 <nav className = "menu">
-                    <a href="#top">Inicio</a>
+                    <Link to ="/">
+                        <a href="#top">Inicio</a>
+                    </Link>
                     <a href="#top">Quienes Somos</a>
                     <a href="#top">Nuestros Productos</a>      
                 </nav>
