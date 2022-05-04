@@ -16,13 +16,13 @@ function App() {
           <Routes>
             <Route
               path="/" 
-              element = {<ItemListContainer greetings="Aca vamos a renderizar nuestros productos"/>}
+              element = {<ItemListContainer greetings="Te invito a descubrir nuestros productos!"/>}
             />
 
           {/* Aqui asociamos la ruta dinamica para las categorias */}
             <Route
               path="/category/:categoryId"
-              element = {<ItemListContainer greetings={"Aca vamos a renderizar nuestros productos"}/>}
+              element = {<ItemListContainer greetings={"Te invito a descubrir nuestros productos!"}/>}
             />
 
             <Route
