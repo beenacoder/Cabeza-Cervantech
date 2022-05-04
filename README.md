@@ -1,7 +1,7 @@
 # CERVANTECH
 ## Ecommerce Articulos de Libreria
 
-[Ver Demo](https://endearing-rabanadas-be8ba6.netlify.app)
+[Ver Demo](https://inspiring-platypus-72bc6d.netlify.app)
 
 
 Cervantech es una tienda online de articulos de libreria que facilita la compra al cliente ya que su pedido estaria listo para retirar por el local comercial, ubicado en pleno centro de la ciudad.
